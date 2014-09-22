@@ -5,8 +5,7 @@
 
 Section: User Commands (1)
 Updated: July 2014
-[Index](#index)
-[Return to Main Contents](http://localhost/cgi-bin/man/man2html)
+[Return to Main Contents](https://github.com/prbinu/yipfilter/blob/master/README.md)
 
 * * *
 
@@ -137,7 +136,7 @@ Written by Binu P. Ramakrishnan
 * * *
 
 This document was created by
-[man2html](http://localhost/cgi-bin/man/man2html),
+[man2html](http://linux.die.net/man/1/man2html),
 using the manual pages.
 
 Time: 23:51:14 GMT, September 21, 2014
