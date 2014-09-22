@@ -1,0 +1,163 @@
+<HTML><HEAD><TITLE>Manpage of YIPFILTER</TITLE>
+</HEAD><BODY>
+<H1>YIPFILTER</H1>
+Section: User Commands (1)<BR>Updated: July 2014<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+yipfilter - A powerfull, easy to use host firewall for IP blacklisting (and whitelisting too!)
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>yipfilter</B>
+
+<I>COMMAND -s SET </I>[<I>-hvd</I>] [<I>-p PORT</I>] [<I>-t TYPE</I>] [<I>-f FILE</I>] [<I>-e TIMEOUT</I>] [<I>-E ELEMENT</I>] [<I>-m MAXELEM</I>]
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+yipfilter is program to create and manage host based IP blacklists and whitelists to control inbound TCP traffic. An application that determines an abusive IP can add the IP to yipfilter blacklist to block inbound traffic from the IP. yipfilter is built on top of iptables and ipset that provides a simple interface to control inbound TCP traffic.
+<A NAME="lbAE">&nbsp;</A>
+<H3>COMMANDS:</H3>
+
+<DL COMPACT>
+<DT>allow <B>-s</B> SET<DD>
+Creates a whitelist set
+<DT>deny <B>-s</B> SET<DD>
+Creates a blacklist set
+<DT>destroy <B>-s</B> SET<DD>
+Delete/Remove a set
+<DT>list [-s SET]<DD>
+List the entries of a named set or all sets
+<DT>add <B>-s</B> SET<DD>
+Add one or more ip/netblocks to an existing set
+<DT>del <B>-s</B> SET<DD>
+Delete entry from the named set
+<DT>test <B>-s</B> SET <B>-E</B> ELEM<DD>
+Test entry in the named set
+<DT>reset<DD>
+Remove/destroy all filter sets from the system
+<DT>save <B>-s</B> SET<DD>
+Save current settings to stdout
+<DT>restore<DD>
+Restore a saved state from the given state file (<B>-f</B>)
+Use restore for batch addition of ips
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H3>OPTIONS:</H3>
+
+<DL COMPACT>
+<DT><B>-s</B> SET<DD>
+The name of the filter set
+<DT><B>-p</B> PORT[,PORT,..]<DD>
+The destination TCP port number for allow/deny. Default
+port is 443. You also can specify multiple ports
+seperated by ',' eg. 443,80,4080
+<DT><B>-t</B> TYPE<DD>
+{net | ip} Address family. IPv4 netblock (CIDR) address
+or a host IPv4 address. Default is 'ip'.
+<DT><B>-f</B> FILE<DD>
+Input file with the list of IPv4 ips or ip net blocks.
+With no FILE or when FILE is -, read standard input.
+No IPv6 support in this release
+<DT><B>-w</B> http[s]<DD>
+HTTP[S] location. (not supported yet)
+<DT><B>-e</B> TIMEOUT<DD>
+Expiry timeout in seconds. Eg. block ips 'n' seconds
+<DT><B>-E</B> ELEMENT<DD>
+One ip or a netblock, primarly used with 'test' command
+<B>-E</B> and <B>-f</B> options are mutually exclusive
+<DT><B>-m</B> MAXELEM<DD>
+The maximal number of elements which can be stored in
+the set, default 65536.
+<DT><B>-v</B><DD>
+Verbose mode. Can be used multiple times for increased
+verbosity
+<DT><B>-d</B><DD>
+Dryrun - Check to see the input IPs/netblocks are valid
+(not supported yet)
+<DT><B>-h</B><DD>
+Display this help and exit
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H3>EXAMPLES:</H3>
+
+<DL COMPACT>
+<DT><DD>
+yipfilter deny <B>-s</B> blacklist <B>-p</B> 443 <B>-t</B> ip <B>-f</B> blacklist.txt
+<DT><DD>
+yipfilter destroy <B>-s</B> blacklist
+<DT><DD>
+yipfilter list <B>-s</B> blacklist
+<DT><DD>
+yipfilter list
+<DT><DD>
+yipfilter add <B>-s</B> blacklist <B>-e</B> 600 <B>-E</B> 72.134.234.56
+<DT><DD>
+yipfilter test <B>-s</B> blacklist <B>-E</B> 72.134.234.56
+<DT><DD>
+echo &quot;72.134.234.56&quot; | yipfilter add <B>-s</B> blacklist <B>-e</B> 600
+<DT><DD>
+yipfilter save <B>-s</B> blacklist &gt; blacklist.yipf
+<DT><DD>
+yipfilter restore <B>-s</B> blacklist <B>-f</B> blacklist.yipf
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>REPORTING BUGS</H2>
+
+Report bugs to &lt;<A HREF="mailto:yipfilter@yahoo.com">yipfilter@yahoo.com</A>&gt;.
+<A NAME="lbAI">&nbsp;</A>
+<H2>COPYRIGHT</H2>
+
+Copyright (C) 2014 Yahoo Inc.
+<P>
+Written by Binu P. Ramakrishnan
+<A NAME="lbAJ">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="http://localhost/cgi-bin/man/man2html?8+iptables">iptables</A>(8) <A HREF="http://localhost/cgi-bin/man/man2html?8+ipset">ipset</A>(8)
+<P>
+
+The full documentation for
+<B>yipfilter</B>
+
+is maintained as a Texinfo manual.  If the
+<B>info</B>
+
+and
+<B>yipfilter</B>
+
+programs are properly installed at your site, the command
+<DL COMPACT>
+<DT><DD>
+<B>info yipfilter</B>
+
+</DL>
+<P>
+
+should give you access to the complete manual.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DL>
+<DT><A HREF="#lbAE">COMMANDS:</A><DD>
+<DT><A HREF="#lbAF">OPTIONS:</A><DD>
+<DT><A HREF="#lbAG">EXAMPLES:</A><DD>
+</DL>
+<DT><A HREF="#lbAH">REPORTING BUGS</A><DD>
+<DT><A HREF="#lbAI">COPYRIGHT</A><DD>
+<DT><A HREF="#lbAJ">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 23:51:14 GMT, September 21, 2014
+</BODY>
+</HTML>

@@ -1,0 +1,10 @@
+[DESCRIPTION]
+yipfilter is program to create and manage host based IP blacklists and whitelists to control inbound TCP traffic. An application that determines an abusive IP can add the IP to yipfilter blacklist to block inbound traffic from the IP. yipfilter is built on top of iptables and ipset that provides a simple interface to control inbound TCP traffic.
+
+[SEE ALSO]
+iptables(8) ipset(8)
+
+[COPYRIGHT]
+Copyright (C) 2014 Yahoo Inc.
+
+Written by Binu P. Ramakrishnan
