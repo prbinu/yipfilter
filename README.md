@@ -65,7 +65,7 @@ To start:
 
 #### Documentation
 
-[Man Page](https://github.com/prbinu/yipfilter/blob/master/docs/yipfilter.md
+[Man Page](https://github.com/prbinu/yipfilter/blob/master/docs/yipfilter.md)
 
 ## License
 
